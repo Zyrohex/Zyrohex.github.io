@@ -1,27 +1,33 @@
+/* === BASE SETTINGS === */
+@import './markdown.css';
+@import './tana-bullets.css';
+@import './plugins.css';
+@import './opr.css';
+@import './sidebar.css';
+
+@font-face {
+    font-family: 'tabler-icons240';
+    src: url('./tabler-icons.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
-    --ls-font-family: "Euclid Circular A", "SF Pro Text", Inter;
-    --ls-main-content-max-width: 850px;
-    --ls-main-content-max-width-wide: 1000px;
-    --cl-faint: 0.2;
-    --cl-semi-faint: 0.4;
-    --cl-medium-faint: 0.6;
-    --cl-slight-faint: 0.8;
+    --ls-font-family: var(--cl-font-family, "Segoe UI", Inter);
+    --cl-background: var(--background-color-h), var(--background-color-s), var(--background-color-l);
+    --cl-block-bullet-fix: 20px;
+    --ls-main-content-max-width: var(--cl-page-width, 1000px);
+    --ls-main-content-max-width-wide: var(--cl-page-max-width, 1200px);
+    --ls-page-title-size: 28px;
+    --ls-left-sidebar-width: 200px;
+    --ls-right-sidebar-width: 30%;
     /* General Settings */
-    --cl-box-shadow: rgba(23, 42, 53, 0.1) 0 1px 2px 0;
+    --cl-box-shadow: rgba(23, 42, 53, 0.1) 0px 0px 4px 2px;
     /* Border Settings */
     --cl-border-minor: 2px;
     --cl-border-max: 4px;
     --cl-border-solid: 1px solid var(--ls-border-color);
     /* Transparency Settings */
-    --cl-transparent-primary: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.1);
-    --cl-transparent-primary-2: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.2);
-    --cl-transparent-primary-4: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.4);
-    --cl-transparent-secondary: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l), 0.1);
-    --cl-transparent-secondary-2: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l), 0.2);
-    --cl-transparent-secondary-4: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l), 0.4);
-    --cl-transparent-accent: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l), 0.1);
-    --cl-transparent-accent-2: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l), 0.2);
-    --cl-transparent-accent-4: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l), 0.4);
     --cl-transparent-text: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.1);
     --cl-transparent-text-2: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.2);
     --cl-transparent-text-4: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.4);
@@ -34,30 +40,79 @@
     --cl-transparent-bg-8: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6), 0.8);
     --cl-transparent-bg-9: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6), 0.9);
     /* Color Settings */
-    --cl-primary: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l));
-    --cl-primary-dark: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) / 1.10));
-    --cl-primary-darker: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) / 1.20));
-    --cl-primary-light: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) * 1.10));
-    --cl-primary-lighter: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) * 1.20));
-    --cl-secondary: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l));
-    --cl-secondary-dark: ;
-    --cl-secondary-darker: ;
-    --cl-secondary-light: ;
-    --cl-secondary-lighter: ;
-    --cl-accent: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l));
-    --cl-accent-dark: ;
-    --cl-accent-darker: ;
-    --cl-accent-light: ;
-    --cl-accent-lighter: ;
+    --cl-gray: 0, 0%, 50%;
+    --cl-color-1: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l));
+    --cl-color-1-dark: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) / 1.10));
+    --cl-color-1-darker: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) / 1.20));
+    --cl-color-1-light: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) * 1.10));
+    --cl-color-1-lighter: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) * 1.20));
+    --cl-sidebar-left-panel: calc(var(--ls-main-content-max-width) * 0.2);
+    --cl-sidebar-right-panel: calc(var(--ls-main-content-max-width) * 0.8);
+    --cl-left-panel: calc(var(--ls-main-content-max-width) * 0.33);
+    --cl-left-wide-panel: calc(var(--ls-main-content-max-width-wide) * 0.33);
+    --cl-right-panel: calc(var(--ls-main-content-max-width) * 0.67);
+    --cl-right-wide-panel: calc(var(--ls-main-content-max-width-wide) * 0.67);
+    /* Color Palettes */
+    --cl-gray-100: hsl(var(--cl-gray));
+    --cl-gray-80: hsl(var(--cl-gray), 0.8);
+    --cl-gray-60: hsl(var(--cl-gray), 0.6);
+    --cl-gray-40: hsl(var(--cl-gray), 0.4);
+    --cl-gray-20: hsl(var(--cl-gray), 0.2);
+    --cl-gray-10: hsl(var(--cl-gray), 0.1);
+    --cl-gray-05: hsl(var(--cl-gray), 0.05);
+    --cl-color-1-100: hsl(var(--cl-color-1));
+    --cl-color-1-80: hsl(var(--cl-color-1), 0.8);
+    --cl-color-1-60: hsl(var(--cl-color-1), 0.6);
+    --cl-color-1-40: hsl(var(--cl-color-1), 0.4);
+    --cl-color-1-20: hsl(var(--cl-color-1), 0.2);
+    --cl-color-1-10: hsl(var(--cl-color-1), 0.1);
+    --cl-color-1-05: hsl(var(--cl-color-1), 0.05);
+    --cl-color-2-100: hsl(var(--cl-color-2));
+    --cl-color-2-80: hsl(var(--cl-color-2), 0.8);
+    --cl-color-2-60: hsl(var(--cl-color-2), 0.6);
+    --cl-color-2-40: hsl(var(--cl-color-2), 0.4);
+    --cl-color-2-20: hsl(var(--cl-color-2), 0.2);
+    --cl-color-2-10: hsl(var(--cl-color-2), 0.1);
+    --cl-color-2-05: hsl(var(--cl-color-2), 0.05);
+    --cl-color-3-100: hsl(var(--cl-color-3));
+    --cl-color-3-80: hsl(var(--cl-color-3), 0.8);
+    --cl-color-3-60: hsl(var(--cl-color-3), 0.6);
+    --cl-color-3-40: hsl(var(--cl-color-3), 0.4);
+    --cl-color-3-20: hsl(var(--cl-color-3), 0.2);
+    --cl-color-3-10: hsl(var(--cl-color-3), 0.1);
+    --cl-color-3-05: hsl(var(--cl-color-3), 0.05);
+    --cl-color-4-100: hsl(var(--cl-color-4));
+    --cl-color-4-80: hsl(var(--cl-color-4), 0.8);
+    --cl-color-4-60: hsl(var(--cl-color-4), 0.6);
+    --cl-color-4-40: hsl(var(--cl-color-4), 0.4);
+    --cl-color-4-20: hsl(var(--cl-color-4), 0.2);
+    --cl-color-4-10: hsl(var(--cl-color-4), 0.1);
+    --cl-color-4-05: hsl(var(--cl-color-4), 0.05);
+    --cl-color-5-100: hsl(var(--cl-color-5));
+    --cl-color-5-80: hsl(var(--cl-color-5), 0.8);
+    --cl-color-5-60: hsl(var(--cl-color-5), 0.6);
+    --cl-color-5-40: hsl(var(--cl-color-5), 0.4);
+    --cl-color-5-20: hsl(var(--cl-color-5), 0.2);
+    --cl-color-5-10: hsl(var(--cl-color-5), 0.1);
+    --cl-color-5-05: hsl(var(--cl-color-5), 0.05);
+    --cl-text-color-100: hsl(var(--cl-text-color));
+    --cl-text-color-80: hsl(var(--cl-text-color), 0.8);
+    --cl-text-color-60: hsl(var(--cl-text-color), 0.6);
+    --cl-text-color-40: hsl(var(--cl-text-color), 0.4);
+    --cl-text-color-20: hsl(var(--cl-text-color), 0.2);
+    --cl-text-color-10: hsl(var(--cl-text-color), 0.1);
+    --cl-text-color-05: hsl(var(--cl-text-color), 0.05);
 }
 
+/* Dark settings */
 .dark-theme,
 html[data-theme='dark'] {
     /* ==== BASE CALCULATORS ==== */
     --contrastThreshold: 60%;
     --lightnessTransform: 5%;
     --darknessTransform: 15%;
-    --bg-light-transform: 3%; /* USED FOR CALCULATING VARIOUS SHADES FOR BACKGROUNDS */
+    --bg-light-transform: 3%;
+    /* USED FOR CALCULATING VARIOUS SHADES FOR BACKGROUNDS */
     /* ==== TRANSFORMERS ==== */
     /* text colors */
     --primary-text-darken: calc(var(--primary-text-l) - calc(var(--lightnessTransform) * 3));
@@ -71,12 +126,12 @@ html[data-theme='dark'] {
     --accent-color-dark-l: calc(var(--accent-color-l) - var(--darknessTransform));
     /* background colors */
     --bg-darkness-1: calc(var(--background-color-l) - var(--bg-light-transform));
-    --bg-lightness-1: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 1));
-    --bg-lightness-2: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 2));
-    --bg-lightness-3: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 3));
-    --bg-lightness-4: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 4));
-    --bg-lightness-5: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 5));
-    --bg-lightness-6: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 6));
+    --bg-lightness-1: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 1.0));
+    --bg-lightness-2: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 2.0));
+    --bg-lightness-3: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 3.0));
+    --bg-lightness-4: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 4.0));
+    --bg-lightness-5: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 5.0));
+    --bg-lightness-6: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 6.0));
     /* === Variables which we can apply to theme elements === */
     --color-primary: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l));
     --color-secondary: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l));
@@ -103,49 +158,49 @@ html[data-theme='dark'] {
     --ls-tertiary-background-color: var(--bg-color-2);
     --ls-quaternary-background-color: var(--bg-color-3);
     --ls-table-tr-even-background-color: var(--color-level-3);
-    --ls-active-primary-color: var(--color-primary);
-    --ls-active-secondary-color: var(--color-secondary);
-    --ls-block-properties-background-color: var(--color-level-1);
-    --ls-page-properties-background-color: var(--color-level-1);
-    --ls-block-ref-link-text-color: var(--color-primary);
+    --ls-active-primary-color: hsl(var(--cl-color-1));
+    --ls-active-secondary-color: hsl(var(--cl-color-2));
+    --ls-block-properties-background-color: var(--bg-color-1);
+    --ls-page-properties-background-color: var(--bg-color-1);
+    --ls-block-ref-link-text-color: hsl(var(--cl-color-1));
     --ls-search-background-color: var(--color-level-3);
     --ls-mark-bg-color: var(--color-accent);
-    --ls-mark-color: var(--color-primary);
-    --ls-border-color: var(--bg-color-3);
-    --ls-secondary-border-color: var(--color-secondary);
-    --ls-guideline-color: var(--cl-transparent-text);
+    --ls-mark-color: hsl(var(--cl-color-1));
+    --ls-border-color: var(--bg-color-1);
+    --ls-secondary-border-color: hsl(var(--cl-color-2));
+    --ls-guideline-color: hsl(var(--cl-text-color), 0.1);
     --ls-guideline-references-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.3);
     --ls-menu-hover-color: var(--ls-secondary-background-color);
-    --ls-primary-text-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l));
-    --ls-secondary-text-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-darken));
+    --ls-primary-text-color: hsl(var(--cl-text-color));
+    --ls-secondary-text-color: hsl(var(--cl-text-color), 0.75);
     --ls-title-text-color: var(--ls-primary-text-color);
-    --ls-link-text-color: var(--cl-primary);
-    --ls-link-text-hover-color: var(--cl-primary);
-    --ls-link-ref-text-color: var(--color-primary);
+    --ls-link-text-color: hsl(var(--cl-color-1));
+    --ls-link-text-hover-color: hsl(var(--cl-color-1));
+    --ls-link-ref-text-color: hsl(var(--cl-color-1));
     --ls-link-ref-text-hover-color: var(--color-primary-light);
-    --ls-tag-text-color: var(--color-primary);
-    --ls-tag-text-hover-color: var(--color-primary);
+    --ls-tag-text-color: var(--ls-secondary-text-color);
+    --ls-tag-text-hover-color: hsl(var(--cl-color-1));
     --ls-slide-background-color: var(--ls-primary-background-color);
-    --ls-block-bullet-border-color: var(--cl-transparent-text);
-    --ls-block-bullet-references-border-color: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.4);
-    --ls-block-bullet-color: var(--cl-transparent-text-4);
+    --ls-block-bullet-border-color: hsl(var(--cl-block-bullet-border-color, var(--cl-text-color), 0.1));
+    --ls-block-bullet-references-border-color: hsl(var(--cl-color-1), 0.1);
+    --ls-block-bullet-color: hsl(var(--cl-block-bullet-color, var(--cl-text-color), 0.5));
     --ls-block-highlight-color: var(--color-level-3);
-    --ls-selection-background-color: var(--color-primary);
+    --ls-selection-background-color: hsl(var(--cl-color-1), 0.1);
     --ls-page-checkbox-color: var(--cl-transparent-text);
-    --ls-page-checkbox-border-color: var(--color-primary);
-    --ls-page-blockquote-color: var(--color-secondary);
-    --ls-page-blockquote-bg-color: var(--cl-transparent-secondary-2);
+    --ls-page-checkbox-border-color: hsl(var(--cl-color-1));
+    --ls-page-blockquote-color: hsl(var(--cl-color-2));
+    --ls-page-blockquote-bg-color: hsl(var(--cl-color-2), 0.2);
     --ls-page-blockquote-border-color: var(--ls-border-color);
-    --ls-page-inline-code-color: var(--ls-primary-text-color);
-    --ls-page-inline-code-bg-color: var(--bg-color-2);
-    --ls-scrollbar-foreground-color: transparent;
-    --ls-scrollbar-background-color: transparent;
-    --ls-scrollbar-thumb-hover-color: var(--color-accent);
+    --ls-page-inline-code-color: hsl(var(--cl-color-1));
+    --ls-page-inline-code-bg-color: hsl(var(--cl-color-1), 0.1);
+    --ls-scrollbar-foreground-color: var(--cl-color-3-60);
+    --ls-scrollbar-background-color: hsl(var(--cl-text-color), 0);
+    --ls-scrollbar-thumb-hover-color: hsl(var(--cl-color-1));
     --ls-head-text-color: var(--ls-link-text-color);
-    --ls-cloze-text-color: var(--color-primary);
-    --ls-icon-color: var(--ls-secondary-text-color);
+    --ls-cloze-text-color: hsl(var(--cl-color-1));
+    --ls-icon-color: hsl(var(--cl-color-1));
     --ls-search-icon-color: var(--ls-link-text-color);
-    --ls-a-chosen-bg: var(--ls-secondary-background-color);
+    --ls-a-chosen-bg: hsl(var(--cl-text-color), 0.1);
     --ls-right-sidebar-code-bg-color: var(--bg-color-3);
     --color-level-1: var(--ls-secondary-background-color);
     --color-level-2: var(--ls-tertiary-background-color);
@@ -153,15 +208,33 @@ html[data-theme='dark'] {
     --color-level-4: var(--bg-color-4);
     --color-level-5: var(--bg-color-5);
     --color-level-6: var(--bg-color-5);
+    --ls-highlight-color-gray: #17171760;
+    --ls-highlight-color-red: #7f1d1d60;
+    --ls-highlight-color-yellow: #78350f60;
+    --ls-highlight-color-green: #14532d60;
+    --ls-highlight-color-blue: #1e3a8a60;
+    --ls-highlight-color-purple: #581c8760;
+    --ls-highlight-color-pink: #83184360;
+    --ls-highlight-color-gray-text: #a3a3a3;
+    --ls-highlight-color-red-text: #f87171;
+    --ls-highlight-color-yellow-text: #d79c05;
+    --ls-highlight-color-green-text: #11c653;
+    --ls-highlight-color-blue-text: #60a5fa;
+    --ls-highlight-color-purple-text: #c084fc;
+    --ls-highlight-color-pink-text: #f472b6;
+    --ls-success-text-color: var(--color-green-500);
+    --ls-header-button-background: hsl(var(--cl-text-color), 1);
 }
 
+/* Light Settings */
 .light-theme,
 html[data-theme='light'] {
     /* ==== BASE CALCULATORS ==== */
     --contrastThreshold: 60%;
     --lightnessTransform: 5%;
     --darknessTransform: 15%;
-    --bg-light-transform: 3%; /* USED FOR CALCULATING VARIOUS SHADES FOR BACKGROUNDS */
+    --bg-light-transform: 3%;
+    /* USED FOR CALCULATING VARIOUS SHADES FOR BACKGROUNDS */
     /* ==== TRANSFORMERS ==== */
     /* text colors */
     --primary-text-darken: calc(var(--primary-text-l) - calc(var(--lightnessTransform) * 3));
@@ -175,12 +248,12 @@ html[data-theme='light'] {
     --accent-color-dark-l: calc(var(--accent-color-l) - var(--darknessTransform));
     /* background colors */
     --bg-darkness-1: calc(var(--background-color-l) + var(--bg-light-transform));
-    --bg-lightness-1: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 1));
-    --bg-lightness-2: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 2));
-    --bg-lightness-3: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 3));
-    --bg-lightness-4: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 4));
-    --bg-lightness-5: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 5));
-    --bg-lightness-6: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 6));
+    --bg-lightness-1: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 1.0));
+    --bg-lightness-2: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 2.0));
+    --bg-lightness-3: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 3.0));
+    --bg-lightness-4: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 4.0));
+    --bg-lightness-5: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 5.0));
+    --bg-lightness-6: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 6.0));
     /* === Variables which we can apply to theme elements === */
     --color-primary: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l));
     --color-secondary: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l));
@@ -207,49 +280,49 @@ html[data-theme='light'] {
     --ls-tertiary-background-color: var(--bg-color-2);
     --ls-quaternary-background-color: var(--bg-color-3);
     --ls-table-tr-even-background-color: var(--color-level-3);
-    --ls-active-primary-color: var(--color-primary);
-    --ls-active-secondary-color: var(--color-secondary);
+    --ls-active-primary-color: hsl(var(--cl-color-1));
+    --ls-active-secondary-color: hsl(var(--cl-color-2));
     --ls-block-properties-background-color: var(--color-level-1);
     --ls-page-properties-background-color: var(--color-level-1);
-    --ls-block-ref-link-text-color: var(--color-primary);
+    --ls-block-ref-link-text-color: hsl(var(--cl-color-1));
     --ls-search-background-color: var(--color-level-3);
     --ls-mark-bg-color: var(--color-accent);
-    --ls-mark-color: var(--color-primary);
-    --ls-border-color: var(--bg-color-3);
-    --ls-secondary-border-color: var(--color-secondary);
-    --ls-guideline-color: var(--cl-transparent-text);
+    --ls-mark-color: hsl(var(--cl-color-1));
+    --ls-border-color: var(--bg-color-1);
+    --ls-secondary-border-color: hsl(var(--cl-color-2));
+    --ls-guideline-color: hsl(var(--cl-text-color), 0.1);
     --ls-guideline-references-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.3);
     --ls-menu-hover-color: var(--ls-secondary-background-color);
-    --ls-primary-text-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l));
-    --ls-secondary-text-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-lighten));
+    --ls-primary-text-color: hsl(var(--cl-text-color));
+    --ls-secondary-text-color: hsl(var(--cl-text-color), 0.75);
     --ls-title-text-color: var(--ls-primary-text-color);
-    --ls-link-text-color: var(--cl-primary);
-    --ls-link-text-hover-color: var(--cl-primary);
-    --ls-link-ref-text-color: var(--color-primary);
+    --ls-link-text-color: hsl(var(--cl-color-1));
+    --ls-link-text-hover-color: hsl(var(--cl-color-1));
+    --ls-link-ref-text-color: hsl(var(--cl-color-1));
     --ls-link-ref-text-hover-color: var(--color-primary-light);
-    --ls-tag-text-color: var(--color-primary);
-    --ls-tag-text-hover-color: var(--color-primary);
+    --ls-tag-text-color: var(--ls-secondary-text-color);
+    --ls-tag-text-hover-color: hsl(var(--cl-color-1));
     --ls-slide-background-color: var(--ls-primary-background-color);
-    --ls-block-bullet-border-color: var(--cl-transparent-text);
-    --ls-block-bullet-references-border-color: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.4);
-    --ls-block-bullet-color: var(--cl-transparent-text-4);
+    --ls-block-bullet-border-color: hsl(var(--cl-block-bullet-border-color, var(--cl-text-color), 0.1));
+    --ls-block-bullet-references-border-color: hsl(var(--cl-color-1), 0.1);
+    --ls-block-bullet-color: hsl(var(--cl-block-bullet-color, var(--cl-text-color), 0.5));
     --ls-block-highlight-color: var(--color-level-3);
-    --ls-selection-background-color: var(--color-primary);
+    --ls-selection-background-color: hsl(var(--cl-color-1), 0.1);
     --ls-page-checkbox-color: var(--cl-transparent-text);
-    --ls-page-checkbox-border-color: var(--color-primary);
-    --ls-page-blockquote-color: var(--color-secondary);
-    --ls-page-blockquote-bg-color: var(--cl-transparent-secondary-2);
+    --ls-page-checkbox-border-color: hsl(var(--cl-color-1));
+    --ls-page-blockquote-color: hsl(var(--cl-color-2));
+    --ls-page-blockquote-bg-color: hsl(var(--cl-color-2), 0.2);
     --ls-page-blockquote-border-color: var(--ls-border-color);
-    --ls-page-inline-code-color: var(--ls-primary-text-color);
-    --ls-page-inline-code-bg-color: var(--bg-color-2);
-    --ls-scrollbar-foreground-color: transparent;
-    --ls-scrollbar-background-color: transparent;
-    --ls-scrollbar-thumb-hover-color: var(--color-accent);
+    --ls-page-inline-code-color: hsl(var(--cl-color-1));
+    --ls-page-inline-code-bg-color: hsl(var(--cl-color-1), 0.1);
+    --ls-scrollbar-foreground-color: var(--cl-color-3-60);
+    --ls-scrollbar-background-color: hsl(var(--cl-text-color), 0);
+    --ls-scrollbar-thumb-hover-color: hsl(var(--cl-color-1));
     --ls-head-text-color: var(--ls-link-text-color);
-    --ls-cloze-text-color: var(--color-primary);
-    --ls-icon-color: var(--ls-secondary-text-color);
+    --ls-cloze-text-color: hsl(var(--cl-color-1));
+    --ls-icon-color: hsl(var(--cl-color-1));
     --ls-search-icon-color: var(--ls-link-text-color);
-    --ls-a-chosen-bg: var(--ls-secondary-background-color);
+    --ls-a-chosen-bg: hsl(var(--cl-text-color), 0.1);
     --ls-right-sidebar-code-bg-color: var(--bg-color-3);
     --color-level-1: var(--ls-secondary-background-color);
     --color-level-2: var(--ls-tertiary-background-color);
@@ -257,25 +330,167 @@ html[data-theme='light'] {
     --color-level-4: var(--bg-color-4);
     --color-level-5: var(--bg-color-5);
     --color-level-6: var(--bg-color-5);
+    --ls-highlight-color-gray: #a3a3a330;
+    --ls-highlight-color-gray-text: #a3a3a3;
+    --ls-highlight-color-red: #f8717130;
+    --ls-highlight-color-red-text: #f87171;
+    --ls-highlight-color-yellow: #fbbf2430;
+    --ls-highlight-color-yellow-text: #d79c05;
+    --ls-highlight-color-green: #4ade8030;
+    --ls-highlight-color-green-text: #11c653;
+    --ls-highlight-color-blue: #60a5fa30;
+    --ls-highlight-color-blue-text: #60a5fa;
+    --ls-highlight-color-purple: #c084fc30;
+    --ls-highlight-color-purple-text: #c084fc;
+    --ls-highlight-color-pink: #f472b630;
+    --ls-highlight-color-pink-text: #f472b6;
+    --ls-success-text-color: var(--color-green-500);
+    --ls-header-button-background: hsl(var(--cl-text-color), 1);
 }
 
-#main-content-container, .sidebar-item {
-    background-color: var(--ls-primary-background-color);
-    border-radius: 3px;
-    margin: 0 12px 12px 12px;
-    padding-top: 32px;
-    box-shadow: var(--box-shadow-med);
+/* === Body === */
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2 {
+    font-weight: 400 !important;
+}
+
+a.tag {
+    font-weight: 600;
+}
+
+.page-ref {
+    color: var(--cl-color-1-100);
+    border-bottom: 1.5px solid var(--cl-color-1-40);
+}
+
+a.external-link:before,
+html a.external-link:before {
+    font-family: tabler-icons !important;
+    content: "\ea99";
+}
+
+a.external-link {
+    border-bottom: 1px dashed var(--cl-color-1-40);
+}
+
+body {
+    font-size: 14px;
+    letter-spacing: -0.00622354em;
+}
+
+/* Main Interface */
+.cp__sidebar-main-layout,
+#app-container,
+.left-sidebar-inner,
+.cp__right-sidebar,
+.cp__right-sidebar-topbar {
+    background-color: transparent;
+}
+
+.white-theme #app-container,
+.white-theme div#right-sidebar-container {
+    background-color: var(--bg-color);
+}
+
+.dark-theme #app-container,
+.dark-theme div#right-sidebar-container {
+    background-color: var(--bg-color);
+}
+
+.white-theme .color-level>.flex.flex-col>.initial>div>.blocks-container {
+    background-color: var(--bg-color-1);
+}
+
+.dark-theme .color-level>.flex.flex-col>.initial>div>.blocks-container {
+    background-color: var(--bg-color-1);
+}
+
+.color-level>.flex.flex-col>.initial>div>.blocks-container {
+    border: 0px solid var(--cl-text-color-10);
+    border-radius: 5px;
+    padding: 2px 6px;
+    margin: 8px 0px;
+    border-radius: .25rem;
+}
+.pre-block {
+    margin-bottom: 3px;
+}
+
+/*#main-content-container {
+    margin-top: var(--ct-header-height) !important;
     border: 1px solid var(--ls-border-color);
-    z-index: 9;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    margin: 24px;
+    border-radius: 8px;
+    background: var(--bg-color);
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 800px;
+    padding-top: 18px;
+}*/
+
+.white-theme .block-properties {
+    background-color: var(--bg-color-1);
 }
 
-.cp__sidebar-main-layout, #app-container, .left-sidebar-inner {
-    background: var(--ls-secondary-background-color);
+.white-theme .references .block-properties {
+    background-color: var(--bg-color);
 }
+
+.dark-theme .block-properties {
+    background-color: var(--bg-color-1) !important;
+}
+
+.dark-theme .references .block-properties {
+    background-color: var(--bg-color-1);
+}
+
+.block-properties {
+    font-size: 12px;
+}
+
+.page-property-value.inline {
+    color: var(--cl-text-color-100);
+    opacity: 1;
+}
+
+a.page-ref.page-property-key.block-property {
+    border-bottom: 0px solid;
+    color: var(--cl-text-color-100);
+}
+
+/* Selected text */
+::selection {
+    color: hsl(var(--cl-color-1));
+}
+
+.ls-block.selected {
+    background-color: hsl(var(--cl-selected-background-color, var(--cl-color-1), 0.1));
+    color: hsl(var(--cl-selected-color, var(--cl-color-1), 1));
+}
+
+/* Adjusting left sidebar size and background color */
 .left-sidebar-inner {
     padding-top: 0px;
     width: var(--ls-left-sidebar-width);
-    background-color: var(--ls-secondary-background-color);
+    border-right: 0px solid;
+}
+
+.left-sidebar-inner .create {
+    background-image: none !important;
+}
+
+.left-sidebar-inner .create #create-button:hover {
+    background-color: hsl(var(--cl-color-1)) !important;
+}
+
+.left-sidebar-inner .create #create-button:hover .ui__icon.ti.ti-plus {
+    color: var(--bg-color-1);
 }
 
 .cp__right-sidebar-topbar {
@@ -284,438 +499,287 @@ html[data-theme='light'] {
     top: 0;
     left: 0;
     right: 0;
-    background-color: var(--ls-secondary-background-color,#d8e1e8);
     z-index: 999;
     user-select: none;
     -webkit-app-region: drag;
 }
 
-.cp__right-sidebar {
-    z-index: var(--ls-z-index-level-1);
-    transition: width .3s;
-    background-color: var(--ls-secondary-background-color,#d8e1e8);
-}
+/* === Typograph === */
 
-:not(.block-ref) .ls-block h1, :not(.block-ref) .ls-block h2, :not(.block-ref) .ls-block h3, :not(.block-ref) .ls-block h4, :not(.block-ref) .ls-block h5, :not(.block-ref) .ls-block h6, .editor-inner .multiline-block:is(.h1, .h2, .h3, .h4, .h5, .h6)::first-line, .editor-inner .uniline-block:is(.h1, .h2, .h3, .h4, .h5, .h6), .ls-block :is(h1, h2, h3, h4, h5, h6) {
-    transform: translateY(-4px);
-}
-
-/*          ===== MARKDOWN  =====           */
-
-/* CodeMirror Blocks */
-.cm-s-solarized.cm-s-dark, .cm-s-solarized.cm-s-light {
-    background-color: var(--bg-dark);
-    text-shadow: none;
-    color: var(--ls-primary-text-color);
-}
-.cm-s-solarized.cm-s-dark .CodeMirror-gutters, .cm-s-solarized.cm-s-light .CodeMirror-gutters {
-    background-color: var(--bg-color-2);
-}
-.cm-s-solarized.cm-s-dark .CodeMirror-linenumber, .cm-s-solarized.cm-s-light .CodeMirror-linenumber {
-    text-shadow: none;
-    color: var(--ls-secondary-text-color);
-}
-
-.extensions__code-lang {
-    color: var(--cl-secondary);
-}
-
-/* Code Mirror Colors */
-
-.cm-s-solarized .cm-keyword {
-    color: var(--color-primary);
-}
-
-.cm-s-solarized .cm-operator {
-    color: var(--color-primary);
-}
-
-.cm-s-solarized .cm-property {
-    color: var(--color-secondary);
-}
-
-.cm-s-solarized .cm-builtin {
-    color: var(--color-secondary);
-}
-
-.cm-s-solarized .cm-number {
-    color: var(--color-accent);
-}
-
-.cm-s-solarized .cm-string {
-    color: var(--color-accent);
-}
-
-.cm-s-solarized .cm-comment {
-    color: slategray;
-}
-
-.cm-s-solarized .cm-variable {
-    color: var(--ls-primary-text-color);
-}
-
-.cm-s-solarized .cm-def,
-.cm-s-solarized .cm-attribute {
-    color: var(--color-primary);
-}
-
-/* Blockquotes */
-blockquote {
-    border-left-color: var(--cl-secondary);
-}
-
-/* Highlights */
-mark {
-    background: var(--cl-secondary);
-}
-
-/*  === Headings ===  */
+/* Headlines */
+:not(.block-ref) .ls-block h1,
+.editor-inner .multiline-block.h1::first-line,
+.editor-inner .uniline-block.h1,
 .ls-block h1 {
-    font-size: 128% !important;
-    border-bottom: 0px;
-  }
+    transform: translateY(-5px) !important;
+}
+
+:not(.block-ref) .ls-block h2,
+.editor-inner .multiline-block.h2::first-line,
+.editor-inner .uniline-block.h2,
 .ls-block h2 {
-    font-size: 124% !important;
-    border-bottom: 0px;
+    transform: translateY(-5px) !important;
 }
+
+:not(.block-ref) .ls-block h3,
+.editor-inner .multiline-block.h3::first-line,
+.editor-inner .uniline-block.h3,
 .ls-block h3 {
-    font-size: 120% !important;
+    transform: translateY(-5px) !important;
 }
+
+:not(.block-ref) .ls-block h4,
+.editor-inner .multiline-block.h4::first-line,
+.editor-inner .uniline-block.h4,
 .ls-block h4 {
-    font-size: 116% !important;
-}
-.ls-block h5 {
-    font-size: 112% !important;
-}
-.ls-block h6 {
-    font-size: 108% !important;
+    transform: translateY(-5.5px) !important;
 }
 
-/*  === Checkboxes ===  */
-.form-checkbox {
-    background-color: var(--bg-dark);
-    border: var(--cl-border-solid);
-    border-radius: var(--cl-border-minor);
-}
-.form-checkbox:checked {
-    background-color: var(--cl-primary);
-    opacity: 0.6;
+/* === BULLET CONTAINERS === */
+
+/* Adjust size of bullets so they are not so big */
+.bullet-container.bullet-closed {
+    border: 0px dashed hsl(var(--cl-text-color), 0.2);
+    width: 11px;
+    height: 11px;
 }
 
-/*      ====== LOGSEQ MARKUP ======      */
-.page-property-key {
-    color: var(--ls-primary-text-color);
-}
-.page-property-key:hover {
-    color: var(--cl-primary);
-    background: transparent;
-}
-.color-level .block-properties {
-    background-color: var(--bg-dark);
-}
-.block-marker {
-    font-size: inherit;
-    color: var(--cl-secondary);
-    opacity: 0.5;
-    font-weight: 400;
-}
-.block-marker:hover {
-    color: var(--cl-secondary);
-    opacity: 1;
-}
-
-.mr-1.flex.flex-row.items-center.sm\:mr-2 {
+/* General bullet settings */
+.bullet-container {
+    width: 11px;
+    height: 11px;
+    margin-left: calc(var(--ls-block-bullet-threading-width-overwrite, var(--cl-block-bullet-fix)) * .16);
+    /* Fix for bullet threading */
     position: relative;
-    top: 2px;
+    margin-top: 0.5px;
 }
 
-/* Left Sidebar */
-
-.left-sidebar-inner .nav-content-item .header {
-    visibility: hidden;
+.bullet-container .bullet {
+    width: 5px;
+    height: 5px;
 }
 
-/* Block Control Arrow */
-a svg {
-    color: var(--ls-block-bullet-color);
+/* Unknown */
+.ls-block .ls-block>div>div.items-center::before {
+    bottom: 56% !important;
 }
 
-/* References Panel */
-/*** References Container ***/
-#main-container .lazy-visibility .color-level {
-    background: transparent;
+/* Adjusting block guidelines */
+.block-children-left-border:hover {
+    background-color: hsl(var(--cl-color-1), 1);
 }
-/* main references panel */
-.lazy-visibility > .fade-enter > .color-level > .flex > .initial > div {
-    background: var(--bg-color-1);
-    padding: 5px 0px;
-    border-radius: var(--cl-border-minor);
-    margin: 10px -15px;
-    border-top-left-radius: var(--cl-border-minor);
-    border: 1px solid var(--bg-color-2);
-    padding-right: 20px;
-}
-/* Add padding to breadcrumbs in references panel to keep it from the edge */
-.lazy-visibility > .fade-enter > .color-level > .flex > .initial > div .breadcrumb {
-    padding: 0px 20px;
-}
-/* Styling block references in side the reference panel */
-.lazy-visibility > .fade-enter > .ls-block > .flex > .flex > .references-blocks > div > div > .content > .flex > .lazy-visibility > .fade-enter > .color-level > div > .initial > div {
-    background: var(--bg-color-2);
-}
-/*.color-level .flex-1.flex-row.foldable-title {
-    background: var(--bg-color-1);
-    padding: 0px 5px;
-    position: relative;
-    top: 16.2px;
-    left: -15px;
-    display: inline-block;
-    border-top-left-radius: var(--cl-border-minor);
-    border-top-right-radius: var(--cl-border-minor);
-}*/
-
-/* Right sidebar references panel */
-.color-level .color-level {
-    background: transparent;
-}
-/*    ====== TYPOGRAPHY ======    */
-.ls-block {
-    padding: 1px 0px;
-}
-/*#main-content-container {
-    font-size: 1em;
-}
-body {
-    font-size: 14px;
-}*/
-
-/* === GALLERY VIEW === */
-    /*===========================================================*/
-    /* Gallery - flexrow wrap v20220413------------------------ */
-    /* - #.v-gallery : create image galleries, default 200x200px */ 
-    /* options:                                                  */
-    /*     width: -w100 ; -w200 ; -w300 ; -w400 ; -fit           */
-    /*     heighht: -h300; -h400 ; default height : 200px        */
-    /* eg use #.v-gallery-fit-h300 to fit image widthx300px      */
-    
-    div[data-refs-self*="gallery"]>.block-children-container.flex {
-        width: 100%;
-    }
-    [data-refs-self*="gallery"]>.block-children-container.flex .block-content .asset-container {
-        margin-top: 0rem;
-    }
-    div[data-refs-self*="gallery"]>.block-children-container.flex>.block-children.w-full {
-        display: inline-flex;
-        position: relative;
-        flex-flow: row wrap;
-    }
-
-    div[data-refs-self*="gallery"]>.block-children-container.flex>.block-children.w-full>div.ls-block {
-        padding: 0;
-        margin: 5px -15px;
-        width: 200px;
-        height: 200px;
-        overflow: hidden;
-    }
-
-    div[data-refs-self*="gallery"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        object-fit: cover !important;
-        height: 200px !important;
-        width: 200px !important;
-    }
-    /* #gallery-col[2-7] : force number of columns - better for pics with same width */   
-    div[data-refs-self*="-col"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-col"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        object-fit: cover ;
-        width: auto !important;
-        height: auto !important;
-     }
-    div[data-refs-self*="-col2"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-col2"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        flex-basis: 50%;
-     }
-    div[data-refs-self*="-col3"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-col3"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        flex-basis: 33%;
-     }
-    div[data-refs-self*="-col4"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-col4"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        flex-basis: 25%;
-    }
-    div[data-refs-self*="-col5"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-col5"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        flex-basis: 20%;
-    }
-    div[data-refs-self*="-col6"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-col6"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        flex-basis: 18%;
-    }
-    div[data-refs-self*="-col7"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-col7"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        flex-basis: 15.5%;
-    }
-    /* #gallery-w[100-300] : force width of the columns */
-    div[data-refs-self*="-w100"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-w100"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        width: 100px !important;
-    }
-    div[data-refs-self*="-w150"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-w150"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        width: 150px !important;
-    }
-    div[data-refs-self*="-w200"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-w200"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        width: 200px !important;
-    }
-    div[data-refs-self*="-w250"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-w250"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        width: 250px !important;
-    }
-    div[data-refs-self*="-w300"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-w300"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        width: 300px !important;
-    }
-    div[data-refs-self*="-w400"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-w400"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        width: 400px !important;
-    }
-    div[data-refs-self*="-fit"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-fit"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        min-width: 200px !important;
-        width: max-content !important; 
-        object-fit: contain;
-    }
-
-    div[data-refs-self*="-h300"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-h300"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        height: 300px !important;
-    }
-    div[data-refs-self*="-h400"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
-    div[data-refs-self*="-h400"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
-        height: 400px !important;
-    }
-    /* remove left border and bullets for gallery */
-    [data-refs-self*="gallery"] .block-children-left-border,
-    [data-refs-self*="gallery"] .block-children-container.flex .bullet-container {
-        display: none;
-    }
-
-    [data-refs-self*="gallery"]>.block-children-container.flex .block-children-container.flex {
-        margin: 0px !important;
-        line-height: 0.2rem;
-        padding-bottom: 0;
-    }
-
-/*--------------------------------------------- gallery end-- */
-
-/* START Bullet & Bullet Container */
 
 .block-children-left-border {
-	transition: all 0.0s ease-in-out;
+    transparent;
 }
 
-.block-children-left-border:hover {
-	background-color: var(--color-primary);
-	transition: var(--transition);
+.block-children-container {
+    margin-left: 29.5px;
 }
 
-a:hover>.bullet-container .bullet {
-	background-color: var(--color-primary);
-	box-shadow: 0 0 0 2px var(--ls-primary-background-color),
-		0 0 0 4px var(--color-primary);
-    transform: scale(1.0);
-	transition: all 0.3s ease-in-out;
+.block-children {
+    border-left-color: var(--cl-text-color-20);
 }
 
-.ls-block .bullet {
-	background-color: var(--color-primary);
-	box-shadow: 0 0 0 2px var(--ls-primary-background-color),
-		0 0 0 4px var(--color-primary);
-	display: block;
-	transition: all 0.3s ease-in-out;
-}
-
-
-/*=========================================================*/
-/* === START highlight current path by cannibalox v0.2 ===*/
-/*=========================================================*/
-
-.ls-block:not(:focus-within) .bullet {
-	background-color: var(--ls-block-bullet-color);
-	box-shadow: none;
-}
-
-/*========================================================*/
-/* === highlight current path by cannibalox v0.2  END ===*/
-/*========================================================*/
-
-/* .block-children-container:focus-within > .block-children-left-border {
-  border-left: 1px solid rgba(var(--havelock-blue), 0.6);
-  /* display: block; */
-/* }  */
-
-/* Bullet & Bullet Container END */
-
-.dark-theme,
-html[data-theme='dark'] {
-    --bg-url: url(https://4kwallpapers.com/images/wallpapers/lakeside-evening-deer-minimal-art-landscape-scenic-panorama-7680x3215-4585.png);
-    --background-color-h: 220;
-    --background-color-s: 13%;
-    --background-color-l: 18%;
-    --primary-color-h: 204;
-    --primary-color-s: 83%;
-    --primary-color-l: 62%;
-    --secondary-color-h: 95;
-    --secondary-color-s: 38%;
-    --secondary-color-l: 62%;
-    --accent-color-h: 286;
-    --accent-color-s: 60%;
-    --accent-color-l: 67%;
-    --primary-text-h: 204;
-    --primary-text-s: 20%;
-    --primary-text-l: 69%;
-}
-
-.white-theme,
-html[data-theme='light'] {
-    --bg-url: url("./bg-images/big-sur.jpg");
-    --background-color-h: 0;
-    --background-color-s: 0%;
-    --background-color-l: 100%;
-    --accent-color-h: 358;
-    --accent-color-s: 99%;
-    --accent-color-l: 35%;
-    --primary-color-h: 196;
-    --primary-color-s: 85%;
-    --primary-color-l: 35%;
-    --secondary-color-h: 40;
-    --secondary-color-s: 100%;
-    --secondary-color-l: 43%;
-    --primary-text-h: 38;
-    --primary-text-s: 9%;
-    --primary-text-l: 24%;
-}
-
-.block-properties {
-    background: transparent;
+/* === TYPOGRAPHY === */
+.ls-block {
     padding: 0px;
-    margin: 0px;
 }
-.block-properties .tag {
-    color: var(--ls-secondary-text-color) !important;
+
+.ls-block .custom-query.mt-4 {
+    margin-top: var(--mt-4, 2em);
 }
-.block-properties .tag:hover {
-    color: var(--ls-active-primary-color) !important;
+
+.tippy-tooltip-content {
+    border-radius: 4px;
 }
-.block-properties .page-reference .bracket {
+
+.tippy-wrapper {
+    background-color: var(--bg-color) !important;
+    border: 2px solid var(--bg-color-1);
+}
+
+.block-control {
+    position: relative;
+    top: 1px;
+}
+
+div[data-refs-self*='"card"'] {
+    background-color: var(--bg-color-1);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.table-wrapper {
+    max-width: 100% !important;
+}
+
+.my-2.color-level.px-2 .foldable-title:hover {
+    color: hsl(var(--cl-color-1));
+}
+
+/* === BREADCRUMBS === */
+.references-blocks .breadcrumb {
+    margin-left: 0px;
+    opacity: 0.5;
+}
+
+.mb-4>.breadcrumb.block-parents.my-2 {
+    margin-left: 30px;
+}
+
+/* === CODE MIRROR === */
+
+/* Coloring */
+/*.white-theme .cm-s-solarized {
+    background-color: var(--bg-color-1);
+}
+.white-theme .color-level .cm-s-solarized {
+    background-color: var(--bg-color);
+}
+.dark-theme .cm-s-solarized {
+    background-color: var(--bg-dark);
+}*/
+/* Styling */
+.extensions__code-lang {
+    margin: 2px;
+    background-color: transparent;
+}
+
+.cp__fenced-code-block {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.cm-s-solarized.cm-s-dark,
+.cm-s-solarized.cm-s-light {
+    text-shadow: none;
+    color: var(--ls-primary-text-color);
+    border: 0px solid var(--bg-color-2);
+    border-radius: 5px;
+    padding-right: 10px;
+}
+
+.cm-s-solarized.cm-s-dark .CodeMirror-gutters,
+.cm-s-solarized.cm-s-light .CodeMirror-gutters {
+    background-color: hsl(var(--cl-background), 0);
+}
+
+.color-level .cm-s-solarized.cm-s-dark,
+.color-level .cm-s-solarized.cm-s-light {
+    text-shadow: none;
+    color: var(--ls-primary-text-color);
+}
+
+.cm-s-solarized.cm-s-dark .CodeMirror-linenumber,
+.cm-s-solarized.cm-s-light .CodeMirror-linenumber {
+    text-shadow: none;
+    color: var(--cl-text-color-20);
+    text-align: -webkit-center;
+}
+
+.cm-s-solarized.CodeMirror {
+    box-shadow: none;
+}
+
+.CodeMirror-hscrollbar {
+    height: 3px;
+}
+
+/* give codemirror border style */
+.code-editor.flex.flex-1.flex-row.w-full {
+    border: 2px solid var(--cl-text-color-10);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+:is(.white-theme, .dark-theme) .cm-s-solarized,
+.color-level :is(.white-theme, .dark-theme) .cm-s-solarized {
+    background-color: transparent;
+}
+
+/* ==========================================================================
+End of Code Mirror
+   ========================================================================== */
+
+/* === PARENT BLOCK STYLING === */
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2>.block-control-wrap {
     display: none;
 }
-.page-property-key {
-    font-weight: 700;
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2 .awLi-icon[data-is-emoji=true] {
+    font-size: 32px !important;
+    margin-right: 28px;
 }
-.page-property-key:hover {
-    background: #e4f2ff !important;
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2 {
+    font-size: 32px !important;
+    margin-bottom: 15px;
+    margin-top: 0px;
+    position: relative;
+    left: 50px;
+    margin-right: 16px;
 }
-.color-level .block-properties {
-    background: transparent !important;
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2 :is(h1, h2, h3, h4, h5, h6) {
+    font-size: 32px;
+}
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2>.flex.flex-col.block-content-wrapper>.flex.flex-row>.flex.flex-row.items-center {
+    align-items: baseline;
+}
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2 .block-marker {
+    font-size: 32px !important;
+    font-weight: bold !important;
+}
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2 .form-checkbox {
+    width: 22px;
+    height: 22px;
+    border-width: 0px;
+}
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2 .color-level {
+    font-size: initial;
+}
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2+.block-children-container>.block-children {
+    border-left: 0px;
+}
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2+.block-children-container>.block-children-left-border {
+    display: none;
+}
+
+.mb-4+div>.page-blocks-inner>div>div>.content>.blocks-container>div>div>.ls-block>.flex.flex-row.pr-2>.flex.flex-col.block-content-wrapper>.flex.flex-row>.flex-1.w-full>.block-content>.block-content-inner+.block-body:not(:empty) {
+    font-size: small;
+    font-weight: 400;
+    padding: 0px 5px;
+}
+
+.mb-4>.breadcrumb.block-parents.flex-row.flex-1.my-2 {
+    margin-left: 27px;
+}
+
+/* more fixes */
+.text-sm.time-spent.ml-1 {
+    display: inline;
+}
+
+.block-ref .timestamp {
+    display: none;
+}
+
+.block-body .custom-query>.flex.flex-col>.content>.flex-1.flex-row.foldable-title>.flex.flex-row.items-center>.block-control {
+    display: none;
+}
+
+/* set HR if it's the only child element */
+.block-body hr:is(:only-child) {
+    margin: 12px 0px !important;
+    border-top: 1px solid var(--cl-text-color-10);
 }

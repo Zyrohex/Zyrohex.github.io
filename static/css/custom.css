@@ -22,6 +22,6 @@ body, .ls-block, .inline {
 .block-properties img {
   max-width: 300px;
 }
-/*.pre-block .bullet-container {
+.pre-block .bullet-container {
   display: none;
-}*/
+}
