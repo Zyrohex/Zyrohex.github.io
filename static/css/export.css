@@ -1,0 +1,721 @@
+:root {
+    --ls-font-family: "Euclid Circular A", "SF Pro Text", Inter;
+    --ls-main-content-max-width: 850px;
+    --ls-main-content-max-width-wide: 1000px;
+    --cl-faint: 0.2;
+    --cl-semi-faint: 0.4;
+    --cl-medium-faint: 0.6;
+    --cl-slight-faint: 0.8;
+    /* General Settings */
+    --cl-box-shadow: rgba(23, 42, 53, 0.1) 0 1px 2px 0;
+    /* Border Settings */
+    --cl-border-minor: 2px;
+    --cl-border-max: 4px;
+    --cl-border-solid: 1px solid var(--ls-border-color);
+    /* Transparency Settings */
+    --cl-transparent-primary: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.1);
+    --cl-transparent-primary-2: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.2);
+    --cl-transparent-primary-4: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.4);
+    --cl-transparent-secondary: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l), 0.1);
+    --cl-transparent-secondary-2: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l), 0.2);
+    --cl-transparent-secondary-4: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l), 0.4);
+    --cl-transparent-accent: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l), 0.1);
+    --cl-transparent-accent-2: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l), 0.2);
+    --cl-transparent-accent-4: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l), 0.4);
+    --cl-transparent-text: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.1);
+    --cl-transparent-text-2: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.2);
+    --cl-transparent-text-4: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.4);
+    --cl-transparent-text-6: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.6);
+    --cl-transparent-text-8: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.8);
+    --cl-transparent-bg: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6), 0.1);
+    --cl-transparent-bg-2: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6), 0.2);
+    --cl-transparent-bg-4: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6), 0.4);
+    --cl-transparent-bg-6: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6), 0.6);
+    --cl-transparent-bg-8: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6), 0.8);
+    --cl-transparent-bg-9: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6), 0.9);
+    /* Color Settings */
+    --cl-primary: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l));
+    --cl-primary-dark: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) / 1.10));
+    --cl-primary-darker: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) / 1.20));
+    --cl-primary-light: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) * 1.10));
+    --cl-primary-lighter: hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) * 1.20));
+    --cl-secondary: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l));
+    --cl-secondary-dark: ;
+    --cl-secondary-darker: ;
+    --cl-secondary-light: ;
+    --cl-secondary-lighter: ;
+    --cl-accent: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l));
+    --cl-accent-dark: ;
+    --cl-accent-darker: ;
+    --cl-accent-light: ;
+    --cl-accent-lighter: ;
+}
+
+.dark-theme,
+html[data-theme='dark'] {
+    /* ==== BASE CALCULATORS ==== */
+    --contrastThreshold: 60%;
+    --lightnessTransform: 5%;
+    --darknessTransform: 15%;
+    --bg-light-transform: 3%; /* USED FOR CALCULATING VARIOUS SHADES FOR BACKGROUNDS */
+    /* ==== TRANSFORMERS ==== */
+    /* text colors */
+    --primary-text-darken: calc(var(--primary-text-l) - calc(var(--lightnessTransform) * 3));
+    --primary-text-lighten: calc(var(--primary-text-l) + calc(var(--lightnessTransform) * 5));
+    /* primary colors */
+    --primary-color-light-l: calc(var(--primary-color-l) + var(--lightnessTransform));
+    --primary-color-dark-l: calc(var(--primary-color-l) - var(--darknessTransform));
+    --secondary-color-light-l: calc(var(--secondary-color-l) + var(--lightnessTransform));
+    --secondary-color-dark-l: calc(var(--secondary-color-l) - var(--darknessTransform));
+    --accent-color-light-l: calc(var(--accent-color-l) + var(--lightnessTransform));
+    --accent-color-dark-l: calc(var(--accent-color-l) - var(--darknessTransform));
+    /* background colors */
+    --bg-darkness-1: calc(var(--background-color-l) - var(--bg-light-transform));
+    --bg-lightness-1: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 1));
+    --bg-lightness-2: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 2));
+    --bg-lightness-3: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 3));
+    --bg-lightness-4: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 4));
+    --bg-lightness-5: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 5));
+    --bg-lightness-6: calc(var(--background-color-l) + calc(var(--bg-light-transform) * 6));
+    /* === Variables which we can apply to theme elements === */
+    --color-primary: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l));
+    --color-secondary: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l));
+    --color-accent: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l));
+    --color-primary-dark: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-dark-l));
+    --color-secondary-dark: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-dark-l));
+    --color-accent-dark: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-dark-l));
+    --color-primary-light: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-light-l));
+    --color-secondary-light: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-light-l));
+    --color-accent-light: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-light-l));
+    --primary-text-dark: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-darken));
+    --primary-text-light: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-lighten));
+    --bg-dark: hsl(var(--background-color-h), var(--background-color-s), var(--bg-darkness-1));
+    --bg-color: hsl(var(--background-color-h), var(--background-color-s), var(--background-color-l));
+    --bg-color-1: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-1));
+    --bg-color-2: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-2));
+    --bg-color-3: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-3));
+    --bg-color-4: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-4));
+    --bg-color-5: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-5));
+    --bg-color-6: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6));
+    /* ========== THEME SETTINGS ========== */
+    --ls-primary-background-color: var(--bg-color);
+    --ls-secondary-background-color: var(--bg-color-1);
+    --ls-tertiary-background-color: var(--bg-color-2);
+    --ls-quaternary-background-color: var(--bg-color-3);
+    --ls-table-tr-even-background-color: var(--color-level-3);
+    --ls-active-primary-color: var(--color-primary);
+    --ls-active-secondary-color: var(--color-secondary);
+    --ls-block-properties-background-color: var(--color-level-1);
+    --ls-page-properties-background-color: var(--color-level-1);
+    --ls-block-ref-link-text-color: var(--color-primary);
+    --ls-search-background-color: var(--color-level-3);
+    --ls-mark-bg-color: var(--color-accent);
+    --ls-mark-color: var(--color-primary);
+    --ls-border-color: var(--bg-color-3);
+    --ls-secondary-border-color: var(--color-secondary);
+    --ls-guideline-color: var(--cl-transparent-text);
+    --ls-guideline-references-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.3);
+    --ls-menu-hover-color: var(--ls-secondary-background-color);
+    --ls-primary-text-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l));
+    --ls-secondary-text-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-darken));
+    --ls-title-text-color: var(--ls-primary-text-color);
+    --ls-link-text-color: var(--cl-primary);
+    --ls-link-text-hover-color: var(--cl-primary);
+    --ls-link-ref-text-color: var(--color-primary);
+    --ls-link-ref-text-hover-color: var(--color-primary-light);
+    --ls-tag-text-color: var(--color-primary);
+    --ls-tag-text-hover-color: var(--color-primary);
+    --ls-slide-background-color: var(--ls-primary-background-color);
+    --ls-block-bullet-border-color: var(--cl-transparent-text);
+    --ls-block-bullet-references-border-color: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.4);
+    --ls-block-bullet-color: var(--cl-transparent-text-4);
+    --ls-block-highlight-color: var(--color-level-3);
+    --ls-selection-background-color: var(--color-primary);
+    --ls-page-checkbox-color: var(--cl-transparent-text);
+    --ls-page-checkbox-border-color: var(--color-primary);
+    --ls-page-blockquote-color: var(--color-secondary);
+    --ls-page-blockquote-bg-color: var(--cl-transparent-secondary-2);
+    --ls-page-blockquote-border-color: var(--ls-border-color);
+    --ls-page-inline-code-color: var(--ls-primary-text-color);
+    --ls-page-inline-code-bg-color: var(--bg-color-2);
+    --ls-scrollbar-foreground-color: transparent;
+    --ls-scrollbar-background-color: transparent;
+    --ls-scrollbar-thumb-hover-color: var(--color-accent);
+    --ls-head-text-color: var(--ls-link-text-color);
+    --ls-cloze-text-color: var(--color-primary);
+    --ls-icon-color: var(--ls-secondary-text-color);
+    --ls-search-icon-color: var(--ls-link-text-color);
+    --ls-a-chosen-bg: var(--ls-secondary-background-color);
+    --ls-right-sidebar-code-bg-color: var(--bg-color-3);
+    --color-level-1: var(--ls-secondary-background-color);
+    --color-level-2: var(--ls-tertiary-background-color);
+    --color-level-3: var(--ls-quaternary-background-color);
+    --color-level-4: var(--bg-color-4);
+    --color-level-5: var(--bg-color-5);
+    --color-level-6: var(--bg-color-5);
+}
+
+.light-theme,
+html[data-theme='light'] {
+    /* ==== BASE CALCULATORS ==== */
+    --contrastThreshold: 60%;
+    --lightnessTransform: 5%;
+    --darknessTransform: 15%;
+    --bg-light-transform: 3%; /* USED FOR CALCULATING VARIOUS SHADES FOR BACKGROUNDS */
+    /* ==== TRANSFORMERS ==== */
+    /* text colors */
+    --primary-text-darken: calc(var(--primary-text-l) - calc(var(--lightnessTransform) * 3));
+    --primary-text-lighten: calc(var(--primary-text-l) + calc(var(--lightnessTransform) * 8));
+    /* primary colors */
+    --primary-color-light-l: calc(var(--primary-color-l) + var(--lightnessTransform));
+    --primary-color-dark-l: calc(var(--primary-color-l) - var(--darknessTransform));
+    --secondary-color-light-l: calc(var(--secondary-color-l) + var(--lightnessTransform));
+    --secondary-color-dark-l: calc(var(--secondary-color-l) - var(--darknessTransform));
+    --accent-color-light-l: calc(var(--accent-color-l) + var(--lightnessTransform));
+    --accent-color-dark-l: calc(var(--accent-color-l) - var(--darknessTransform));
+    /* background colors */
+    --bg-darkness-1: calc(var(--background-color-l) + var(--bg-light-transform));
+    --bg-lightness-1: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 1));
+    --bg-lightness-2: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 2));
+    --bg-lightness-3: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 3));
+    --bg-lightness-4: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 4));
+    --bg-lightness-5: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 5));
+    --bg-lightness-6: calc(var(--background-color-l) - calc(var(--bg-light-transform) * 6));
+    /* === Variables which we can apply to theme elements === */
+    --color-primary: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l));
+    --color-secondary: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-l));
+    --color-accent: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l));
+    --color-primary-dark: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-dark-l));
+    --color-secondary-dark: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-dark-l));
+    --color-accent-dark: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-dark-l));
+    --color-primary-light: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-light-l));
+    --color-secondary-light: hsl(var(--secondary-color-h), var(--secondary-color-s), var(--secondary-color-light-l));
+    --color-accent-light: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-light-l));
+    --primary-text-dark: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-darken));
+    --primary-text-light: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-lighten));
+    --bg-dark: hsl(var(--background-color-h), var(--background-color-s), var(--bg-darkness-1));
+    --bg-color: hsl(var(--background-color-h), var(--background-color-s), var(--background-color-l));
+    --bg-color-1: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-1));
+    --bg-color-2: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-2));
+    --bg-color-3: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-3));
+    --bg-color-4: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-4));
+    --bg-color-5: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-5));
+    --bg-color-6: hsl(var(--background-color-h), var(--background-color-s), var(--bg-lightness-6));
+    /* ========== THEME SETTINGS ========== */
+    --ls-primary-background-color: var(--bg-color);
+    --ls-secondary-background-color: var(--bg-color-1);
+    --ls-tertiary-background-color: var(--bg-color-2);
+    --ls-quaternary-background-color: var(--bg-color-3);
+    --ls-table-tr-even-background-color: var(--color-level-3);
+    --ls-active-primary-color: var(--color-primary);
+    --ls-active-secondary-color: var(--color-secondary);
+    --ls-block-properties-background-color: var(--color-level-1);
+    --ls-page-properties-background-color: var(--color-level-1);
+    --ls-block-ref-link-text-color: var(--color-primary);
+    --ls-search-background-color: var(--color-level-3);
+    --ls-mark-bg-color: var(--color-accent);
+    --ls-mark-color: var(--color-primary);
+    --ls-border-color: var(--bg-color-3);
+    --ls-secondary-border-color: var(--color-secondary);
+    --ls-guideline-color: var(--cl-transparent-text);
+    --ls-guideline-references-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l), 0.3);
+    --ls-menu-hover-color: var(--ls-secondary-background-color);
+    --ls-primary-text-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-l));
+    --ls-secondary-text-color: hsl(var(--primary-text-h), var(--primary-text-s), var(--primary-text-lighten));
+    --ls-title-text-color: var(--ls-primary-text-color);
+    --ls-link-text-color: var(--cl-primary);
+    --ls-link-text-hover-color: var(--cl-primary);
+    --ls-link-ref-text-color: var(--color-primary);
+    --ls-link-ref-text-hover-color: var(--color-primary-light);
+    --ls-tag-text-color: var(--color-primary);
+    --ls-tag-text-hover-color: var(--color-primary);
+    --ls-slide-background-color: var(--ls-primary-background-color);
+    --ls-block-bullet-border-color: var(--cl-transparent-text);
+    --ls-block-bullet-references-border-color: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l), 0.4);
+    --ls-block-bullet-color: var(--cl-transparent-text-4);
+    --ls-block-highlight-color: var(--color-level-3);
+    --ls-selection-background-color: var(--color-primary);
+    --ls-page-checkbox-color: var(--cl-transparent-text);
+    --ls-page-checkbox-border-color: var(--color-primary);
+    --ls-page-blockquote-color: var(--color-secondary);
+    --ls-page-blockquote-bg-color: var(--cl-transparent-secondary-2);
+    --ls-page-blockquote-border-color: var(--ls-border-color);
+    --ls-page-inline-code-color: var(--ls-primary-text-color);
+    --ls-page-inline-code-bg-color: var(--bg-color-2);
+    --ls-scrollbar-foreground-color: transparent;
+    --ls-scrollbar-background-color: transparent;
+    --ls-scrollbar-thumb-hover-color: var(--color-accent);
+    --ls-head-text-color: var(--ls-link-text-color);
+    --ls-cloze-text-color: var(--color-primary);
+    --ls-icon-color: var(--ls-secondary-text-color);
+    --ls-search-icon-color: var(--ls-link-text-color);
+    --ls-a-chosen-bg: var(--ls-secondary-background-color);
+    --ls-right-sidebar-code-bg-color: var(--bg-color-3);
+    --color-level-1: var(--ls-secondary-background-color);
+    --color-level-2: var(--ls-tertiary-background-color);
+    --color-level-3: var(--ls-quaternary-background-color);
+    --color-level-4: var(--bg-color-4);
+    --color-level-5: var(--bg-color-5);
+    --color-level-6: var(--bg-color-5);
+}
+
+#main-content-container, .sidebar-item {
+    background-color: var(--ls-primary-background-color);
+    border-radius: 3px;
+    margin: 0 12px 12px 12px;
+    padding-top: 32px;
+    box-shadow: var(--box-shadow-med);
+    border: 1px solid var(--ls-border-color);
+    z-index: 9;
+}
+
+.cp__sidebar-main-layout, #app-container, .left-sidebar-inner {
+    background: var(--ls-secondary-background-color);
+}
+.left-sidebar-inner {
+    padding-top: 0px;
+    width: var(--ls-left-sidebar-width);
+    background-color: var(--ls-secondary-background-color);
+}
+
+.cp__right-sidebar-topbar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--ls-secondary-background-color,#d8e1e8);
+    z-index: 999;
+    user-select: none;
+    -webkit-app-region: drag;
+}
+
+.cp__right-sidebar {
+    z-index: var(--ls-z-index-level-1);
+    transition: width .3s;
+    background-color: var(--ls-secondary-background-color,#d8e1e8);
+}
+
+:not(.block-ref) .ls-block h1, :not(.block-ref) .ls-block h2, :not(.block-ref) .ls-block h3, :not(.block-ref) .ls-block h4, :not(.block-ref) .ls-block h5, :not(.block-ref) .ls-block h6, .editor-inner .multiline-block:is(.h1, .h2, .h3, .h4, .h5, .h6)::first-line, .editor-inner .uniline-block:is(.h1, .h2, .h3, .h4, .h5, .h6), .ls-block :is(h1, h2, h3, h4, h5, h6) {
+    transform: translateY(-4px);
+}
+
+/*          ===== MARKDOWN  =====           */
+
+/* CodeMirror Blocks */
+.cm-s-solarized.cm-s-dark, .cm-s-solarized.cm-s-light {
+    background-color: var(--bg-dark);
+    text-shadow: none;
+    color: var(--ls-primary-text-color);
+}
+.cm-s-solarized.cm-s-dark .CodeMirror-gutters, .cm-s-solarized.cm-s-light .CodeMirror-gutters {
+    background-color: var(--bg-color-2);
+}
+.cm-s-solarized.cm-s-dark .CodeMirror-linenumber, .cm-s-solarized.cm-s-light .CodeMirror-linenumber {
+    text-shadow: none;
+    color: var(--ls-secondary-text-color);
+}
+
+.extensions__code-lang {
+    color: var(--cl-secondary);
+}
+
+/* Code Mirror Colors */
+
+.cm-s-solarized .cm-keyword {
+    color: var(--color-primary);
+}
+
+.cm-s-solarized .cm-operator {
+    color: var(--color-primary);
+}
+
+.cm-s-solarized .cm-property {
+    color: var(--color-secondary);
+}
+
+.cm-s-solarized .cm-builtin {
+    color: var(--color-secondary);
+}
+
+.cm-s-solarized .cm-number {
+    color: var(--color-accent);
+}
+
+.cm-s-solarized .cm-string {
+    color: var(--color-accent);
+}
+
+.cm-s-solarized .cm-comment {
+    color: slategray;
+}
+
+.cm-s-solarized .cm-variable {
+    color: var(--ls-primary-text-color);
+}
+
+.cm-s-solarized .cm-def,
+.cm-s-solarized .cm-attribute {
+    color: var(--color-primary);
+}
+
+/* Blockquotes */
+blockquote {
+    border-left-color: var(--cl-secondary);
+}
+
+/* Highlights */
+mark {
+    background: var(--cl-secondary);
+}
+
+/*  === Headings ===  */
+.ls-block h1 {
+    font-size: 128% !important;
+    border-bottom: 0px;
+  }
+.ls-block h2 {
+    font-size: 124% !important;
+    border-bottom: 0px;
+}
+.ls-block h3 {
+    font-size: 120% !important;
+}
+.ls-block h4 {
+    font-size: 116% !important;
+}
+.ls-block h5 {
+    font-size: 112% !important;
+}
+.ls-block h6 {
+    font-size: 108% !important;
+}
+
+/*  === Checkboxes ===  */
+.form-checkbox {
+    background-color: var(--bg-dark);
+    border: var(--cl-border-solid);
+    border-radius: var(--cl-border-minor);
+}
+.form-checkbox:checked {
+    background-color: var(--cl-primary);
+    opacity: 0.6;
+}
+
+/*      ====== LOGSEQ MARKUP ======      */
+.page-property-key {
+    color: var(--ls-primary-text-color);
+}
+.page-property-key:hover {
+    color: var(--cl-primary);
+    background: transparent;
+}
+.color-level .block-properties {
+    background-color: var(--bg-dark);
+}
+.block-marker {
+    font-size: inherit;
+    color: var(--cl-secondary);
+    opacity: 0.5;
+    font-weight: 400;
+}
+.block-marker:hover {
+    color: var(--cl-secondary);
+    opacity: 1;
+}
+
+.mr-1.flex.flex-row.items-center.sm\:mr-2 {
+    position: relative;
+    top: 2px;
+}
+
+/* Left Sidebar */
+
+.left-sidebar-inner .nav-content-item .header {
+    visibility: hidden;
+}
+
+/* Block Control Arrow */
+a svg {
+    color: var(--ls-block-bullet-color);
+}
+
+/* References Panel */
+/*** References Container ***/
+#main-container .lazy-visibility .color-level {
+    background: transparent;
+}
+/* main references panel */
+.lazy-visibility > .fade-enter > .color-level > .flex > .initial > div {
+    background: var(--bg-color-1);
+    padding: 5px 0px;
+    border-radius: var(--cl-border-minor);
+    margin: 10px -15px;
+    border-top-left-radius: var(--cl-border-minor);
+    border: 1px solid var(--bg-color-2);
+    padding-right: 20px;
+}
+/* Add padding to breadcrumbs in references panel to keep it from the edge */
+.lazy-visibility > .fade-enter > .color-level > .flex > .initial > div .breadcrumb {
+    padding: 0px 20px;
+}
+/* Styling block references in side the reference panel */
+.lazy-visibility > .fade-enter > .ls-block > .flex > .flex > .references-blocks > div > div > .content > .flex > .lazy-visibility > .fade-enter > .color-level > div > .initial > div {
+    background: var(--bg-color-2);
+}
+/*.color-level .flex-1.flex-row.foldable-title {
+    background: var(--bg-color-1);
+    padding: 0px 5px;
+    position: relative;
+    top: 16.2px;
+    left: -15px;
+    display: inline-block;
+    border-top-left-radius: var(--cl-border-minor);
+    border-top-right-radius: var(--cl-border-minor);
+}*/
+
+/* Right sidebar references panel */
+.color-level .color-level {
+    background: transparent;
+}
+/*    ====== TYPOGRAPHY ======    */
+.ls-block {
+    padding: 1px 0px;
+}
+/*#main-content-container {
+    font-size: 1em;
+}
+body {
+    font-size: 14px;
+}*/
+
+/* === GALLERY VIEW === */
+    /*===========================================================*/
+    /* Gallery - flexrow wrap v20220413------------------------ */
+    /* - #.v-gallery : create image galleries, default 200x200px */ 
+    /* options:                                                  */
+    /*     width: -w100 ; -w200 ; -w300 ; -w400 ; -fit           */
+    /*     heighht: -h300; -h400 ; default height : 200px        */
+    /* eg use #.v-gallery-fit-h300 to fit image widthx300px      */
+    
+    div[data-refs-self*="gallery"]>.block-children-container.flex {
+        width: 100%;
+    }
+    [data-refs-self*="gallery"]>.block-children-container.flex .block-content .asset-container {
+        margin-top: 0rem;
+    }
+    div[data-refs-self*="gallery"]>.block-children-container.flex>.block-children.w-full {
+        display: inline-flex;
+        position: relative;
+        flex-flow: row wrap;
+    }
+
+    div[data-refs-self*="gallery"]>.block-children-container.flex>.block-children.w-full>div.ls-block {
+        padding: 0;
+        margin: 5px -15px;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    div[data-refs-self*="gallery"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        object-fit: cover !important;
+        height: 200px !important;
+        width: 200px !important;
+    }
+    /* #gallery-col[2-7] : force number of columns - better for pics with same width */   
+    div[data-refs-self*="-col"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-col"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        object-fit: cover ;
+        width: auto !important;
+        height: auto !important;
+     }
+    div[data-refs-self*="-col2"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-col2"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        flex-basis: 50%;
+     }
+    div[data-refs-self*="-col3"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-col3"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        flex-basis: 33%;
+     }
+    div[data-refs-self*="-col4"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-col4"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        flex-basis: 25%;
+    }
+    div[data-refs-self*="-col5"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-col5"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        flex-basis: 20%;
+    }
+    div[data-refs-self*="-col6"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-col6"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        flex-basis: 18%;
+    }
+    div[data-refs-self*="-col7"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-col7"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        flex-basis: 15.5%;
+    }
+    /* #gallery-w[100-300] : force width of the columns */
+    div[data-refs-self*="-w100"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-w100"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        width: 100px !important;
+    }
+    div[data-refs-self*="-w150"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-w150"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        width: 150px !important;
+    }
+    div[data-refs-self*="-w200"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-w200"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        width: 200px !important;
+    }
+    div[data-refs-self*="-w250"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-w250"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        width: 250px !important;
+    }
+    div[data-refs-self*="-w300"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-w300"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        width: 300px !important;
+    }
+    div[data-refs-self*="-w400"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-w400"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        width: 400px !important;
+    }
+    div[data-refs-self*="-fit"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-fit"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        min-width: 200px !important;
+        width: max-content !important; 
+        object-fit: contain;
+    }
+
+    div[data-refs-self*="-h300"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-h300"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        height: 300px !important;
+    }
+    div[data-refs-self*="-h400"]>.block-children-container.flex>.block-children.w-full>div.ls-block,
+    div[data-refs-self*="-h400"]>.block-children-container.flex>.block-children.w-full>div.ls-block img {
+        height: 400px !important;
+    }
+    /* remove left border and bullets for gallery */
+    [data-refs-self*="gallery"] .block-children-left-border,
+    [data-refs-self*="gallery"] .block-children-container.flex .bullet-container {
+        display: none;
+    }
+
+    [data-refs-self*="gallery"]>.block-children-container.flex .block-children-container.flex {
+        margin: 0px !important;
+        line-height: 0.2rem;
+        padding-bottom: 0;
+    }
+
+/*--------------------------------------------- gallery end-- */
+
+/* START Bullet & Bullet Container */
+
+.block-children-left-border {
+	transition: all 0.0s ease-in-out;
+}
+
+.block-children-left-border:hover {
+	background-color: var(--color-primary);
+	transition: var(--transition);
+}
+
+a:hover>.bullet-container .bullet {
+	background-color: var(--color-primary);
+	box-shadow: 0 0 0 2px var(--ls-primary-background-color),
+		0 0 0 4px var(--color-primary);
+    transform: scale(1.0);
+	transition: all 0.3s ease-in-out;
+}
+
+.ls-block .bullet {
+	background-color: var(--color-primary);
+	box-shadow: 0 0 0 2px var(--ls-primary-background-color),
+		0 0 0 4px var(--color-primary);
+	display: block;
+	transition: all 0.3s ease-in-out;
+}
+
+
+/*=========================================================*/
+/* === START highlight current path by cannibalox v0.2 ===*/
+/*=========================================================*/
+
+.ls-block:not(:focus-within) .bullet {
+	background-color: var(--ls-block-bullet-color);
+	box-shadow: none;
+}
+
+/*========================================================*/
+/* === highlight current path by cannibalox v0.2  END ===*/
+/*========================================================*/
+
+/* .block-children-container:focus-within > .block-children-left-border {
+  border-left: 1px solid rgba(var(--havelock-blue), 0.6);
+  /* display: block; */
+/* }  */
+
+/* Bullet & Bullet Container END */
+
+.dark-theme,
+html[data-theme='dark'] {
+    --bg-url: url(https://4kwallpapers.com/images/wallpapers/lakeside-evening-deer-minimal-art-landscape-scenic-panorama-7680x3215-4585.png);
+    --background-color-h: 220;
+    --background-color-s: 13%;
+    --background-color-l: 18%;
+    --primary-color-h: 204;
+    --primary-color-s: 83%;
+    --primary-color-l: 62%;
+    --secondary-color-h: 95;
+    --secondary-color-s: 38%;
+    --secondary-color-l: 62%;
+    --accent-color-h: 286;
+    --accent-color-s: 60%;
+    --accent-color-l: 67%;
+    --primary-text-h: 204;
+    --primary-text-s: 20%;
+    --primary-text-l: 69%;
+}
+
+.white-theme,
+html[data-theme='light'] {
+    --bg-url: url("./bg-images/big-sur.jpg");
+    --background-color-h: 0;
+    --background-color-s: 0%;
+    --background-color-l: 100%;
+    --accent-color-h: 358;
+    --accent-color-s: 99%;
+    --accent-color-l: 35%;
+    --primary-color-h: 196;
+    --primary-color-s: 85%;
+    --primary-color-l: 35%;
+    --secondary-color-h: 40;
+    --secondary-color-s: 100%;
+    --secondary-color-l: 43%;
+    --primary-text-h: 38;
+    --primary-text-s: 9%;
+    --primary-text-l: 24%;
+}
+
+.block-properties {
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+}
+.block-properties .tag {
+    color: var(--ls-secondary-text-color) !important;
+}
+.block-properties .tag:hover {
+    color: var(--ls-active-primary-color) !important;
+}
+.block-properties .page-reference .bracket {
+    display: none;
+}
+.page-property-key {
+    font-weight: 700;
+}
+.page-property-key:hover {
+    background: #e4f2ff !important;
+}
+.color-level .block-properties {
+    background: transparent !important;
+}
