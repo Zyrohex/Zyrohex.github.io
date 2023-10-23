@@ -1,3 +1,15 @@
-.ls-block :is(h1,h2,h3,h4,h5,h6) {
-  border-bottom: 1px solid var(--cl-text-color-60);
+body, .ls-block, .inline {
+  font-variant-ligatures: common-ligatures;
+  font-weight: 400;
+  font-size: 15px;
+}
+:root {
+  --cl-page-width: 700px;
+  --cl-page-max-width: 1000px;
+  --cl-font-family: "Euclid Circular A";
+  --cl-font-family: "Consolas";
+  --cl-font-family: "SF Pro Text";
+  --cl-font-family: "Segoe UI";
+  --cl-font-family: Inter;
+  --ls-scrollbar-width: 0px;
 }
